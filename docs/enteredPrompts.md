@@ -1,3 +1,73 @@
+# 세션 3
+
+`CLAUDE.md`를 읽고 프로젝트 구조와 주요 파일 위치를 파악해줘.
+
+참고로 2세션에서 아래 작업이 완료됐어:
+- `MarkdownRenderer.kt` 신규 생성 (또는 App.kt 내부에 구현) — 정확한 위치는 CLAUDE.md 읽고 확인해줘
+- 헤더(H1~H4), 볼드(**), 이탤릭(*) 파싱 구현 완료
+
+파악 후 아래 작업을 순서대로 진행해줘.
+
+---
+
+## 1. 편집 기능 — 분할 레이아웃
+
+- 상단에 모드 전환 버튼 3개 배치
+    - **편집만**: 편집창만 전체 화면
+    - **미리보기만**: 렌더링 결과만 전체 화면
+    - **양쪽 보기**: 편집창 + 미리보기 좌우 분할
+- 양쪽 보기 모드에서는 가운데 구분선을 드래그해서 비율 조절 가능
+    - 구분선은 `Box`로 구현하고 `pointerInput`으로 드래그 감지
+    - 비율은 `mutableStateOf(0.5f)`로 관리 (0.2f ~ 0.8f 범위 제한)
+- 편집창(`BasicTextField`)을 감싼 Column에 `defaultMinSize(minHeight = 최대높이)`를 적용해서 짧은 텍스트일 때도 빈 공간 전체가 클릭 가능하게 해줘
+- 편집창과 미리보기가 같은 `mutableStateOf` 상태를 공유하도록 구성
+
+## 2. 저장/불러오기
+
+- 파일 다이얼로그는 `java.awt.FileDialog` 사용 (macOS 네이티브)
+- `Cmd+S`: 현재 편집창 텍스트를 `.md` 파일로 저장
+- `Cmd+O`: `.md` 파일을 열어 편집창에 로드
+- 단축키는 `main.kt`의 Window에서 `onKeyEvent`로 처리
+    - `isMetaPressed + key == Key.S` → 저장
+    - `isMetaPressed + key == Key.O` → 열기
+
+## 3. 글씨 크기 단축키
+
+- `Cmd+=`: 폰트 크기 +2sp
+- `Cmd+-`: 폰트 크기 -2sp
+- `Cmd+0`: 폰트 크기 초기화 (기본값 16sp)
+- 폰트 크기 상태를 `App.kt`에서 관리하고 `MarkdownRenderer`에 파라미터로 전달
+
+---
+
+## 작업 완료 후 `CLAUDE.md` 업데이트
+
+아래 두 섹션을 수정해줘.
+
+### TODO 섹션 갱신
+
+```markdown
+## TODO
+
+- [x] 마크다운 렌더링 (Compose)
+- [x] 편집 기능 (모드 전환, 드래그 분할, 실시간 미리보기)
+- [x] 저장/불러오기 (Cmd+S, Cmd+O)
+- [x] 글씨 크기 단축키 (Cmd+=, Cmd+-, Cmd+0)
+- [ ] 로컬 .md 파일 목록 읽기 (사이드바)
+- [ ] 플랫폼별 파일 접근 (expect/actual)
+- [ ] 형광펜 기능
+```
+
+### 마지막 작업 섹션 갱신 (기존 내용에 추가)
+
+```markdown
+- 2026-XX-XX: [구현한 기능 한 줄 요약] / 수정 파일: [파일명들] / 특이사항: [있으면 기록, 없으면 생략]
+```
+---
+이하의 에러 해결: "file:///Users/tangpie/Documents/2604DevCourse/KMP/memoApp/composeApp/src/jvmMain/kotlin/com/back/App.kt:85:40 'val maxWidth: Dp' cannot be called in this context with an implicit receiver. Use an explicit receiver if necessary."
+
+---
+
 # 세션 2
 `CLAUDE.md`를 읽고 프로젝트 구조와 주요 파일 위치를 파악해줘.
 
