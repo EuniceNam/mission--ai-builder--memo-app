@@ -61,10 +61,16 @@ memoApp/
 
 ## TODO
 
-- [ ] 로컬 `.md` 파일 목록 읽기
-- [ ] 마크다운 렌더링 (Compose)
+- [x] 마크다운 렌더링 (Compose)
+- [x] 편집 기능 (좌우 분할, 실시간 미리보기)
+- [x] 저장/불러오기 (Cmd+S, Cmd+O)
+- [x] 글씨 크기 단축키 (Cmd+=, Cmd+-, Cmd+0)
+- [ ] 로컬 `.md` 파일 목록 읽기 (사이드바)
 - [ ] 플랫폼별 파일 접근 (`expect`/`actual`)
+- [ ] 형광펜 기능
 
 ## 마지막 작업
 
 - 2026-04-30: 프로젝트 구조 파악 및 CLAUDE.md 초기 작성
+- 2026-04-30: MarkdownRenderer 구현 (헤더 4레벨, 볼드, 이탤릭) 및 App.kt 샘플 연동
+- 2026-04-30: 좌우 분할 편집기 + 저장/불러오기(Cmd+S/O) + 글씨 크기 단축키(Cmd+=/-/0) 구현 / 수정 파일: main.kt, App.kt, MarkdownRenderer.kt
