@@ -65,7 +65,10 @@
 ```
 ---
 이하의 에러 해결: "file:///Users/tangpie/Documents/2604DevCourse/KMP/memoApp/composeApp/src/jvmMain/kotlin/com/back/App.kt:85:40 'val maxWidth: Dp' cannot be called in this context with an implicit receiver. Use an explicit receiver if necessary."
-
+---
+프로그램 실행은 되는데 깃에 저장하려니 두 에러가 떠: "Error:(116, 53) Unresolved reference 'MarkdownRenderer'." Error:(144, 33) Unresolved reference            
+'MarkdownRenderer'.
+                          
 ---
 
 # 세션 2

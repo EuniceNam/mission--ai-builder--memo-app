@@ -66,7 +66,7 @@ memoApp/
 - [x] 저장/불러오기 (Cmd+S, Cmd+O)
 - [x] 글씨 크기 단축키 (Cmd+=, Cmd+-, Cmd+0)
 - [x] 로컬 `.md` 파일 목록 읽기 (사이드바)
-- [ ] 형광펜 기능
+- [x] 형광펜 기능 (==텍스트==)
 
 ## 마지막 작업
 
@@ -75,3 +75,4 @@ memoApp/
 - 2026-04-30: 좌우 분할 편집기 + 저장/불러오기(Cmd+S/O) + 글씨 크기 단축키(Cmd+=/-/0) 구현 / 수정 파일: main.kt, App.kt, MarkdownRenderer.kt
 - 2026-04-30: 모드 전환 버튼(편집만/양쪽 보기/미리보기만) + 드래그 구분선(비율 0.2f~0.8f) 구현 / 수정 파일: App.kt, MarkdownRenderer.kt / 특이사항: MarkdownRenderer.kt buildAnnotatedString 오타 수정
 - 2026-04-30: 사이드바 추가 — 폴더 선택(JFileChooser), .md 파일 목록, 파일 클릭 시 편집창 로드, 드래그로 너비 조절(비율 0.1f~0.4f) / 수정 파일: App.kt
+- 2026-04-30: 형광펜 기능 구현 (==텍스트==, 노란 배경) — 미리보기 렌더링 및 편집창 VisualTransformation 적용 / 수정 파일: MarkdownRenderer.kt, App.kt / 특이사항: Java 25 환경에서 compileKotlinJvm 실패(기존 이슈), Java 21로 우회 확인

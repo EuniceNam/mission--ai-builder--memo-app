@@ -29,9 +29,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -192,6 +198,19 @@ private fun Sidebar(
     }
 }
 
+private object HighlightTransformation : VisualTransformation {
+    private val pattern = Regex("""==(.*?)==""")
+    override fun filter(text: androidx.compose.ui.text.AnnotatedString): TransformedText {
+        val annotated = buildAnnotatedString {
+            append(text)
+            pattern.findAll(text.text).forEach { match ->
+                addStyle(SpanStyle(background = Color(0xFFFFFF00)), match.range.first, match.range.last + 1)
+            }
+        }
+        return TransformedText(annotated, OffsetMapping.Identity)
+    }
+}
+
 private fun chooseFolderDialog(): File? {
     val chooser = JFileChooser()
     chooser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
@@ -211,6 +230,7 @@ private fun EditorPane(text: MutableState<String>, fontSize: MutableState<Int>, 
                 value = text.value,
                 onValueChange = { text.value = it },
                 textStyle = TextStyle(fontSize = fontSize.value.sp),
+                visualTransformation = HighlightTransformation,
                 modifier = Modifier
                     .fillMaxWidth()
                     .defaultMinSize(minHeight = minHeight)
